@@ -44,10 +44,12 @@ async function loadVideos() {
       container.innerHTML += `
         <div class="video-card" style="margin-bottom:20px;">
           <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank">
-            <img src="${thumbnail}" alt="${title}" style="width:100%;max-width:320px;border-radius:8px;">
+            <img src="${thumbnail}" alt="${title}"
             <p><strong>${title}</strong></p>
             <small>📅 ${published}</small><br>
-            <small>👍 ${likes} Likes · 👁️ ${views} Views</small>
+              <div class="stats">
+                    👍 ${likes} Likes <span class="views">👁️ ${views} Views</span>
+             </div>
           </a>
         </div>
       `;
@@ -59,3 +61,4 @@ async function loadVideos() {
 
 // Load on page start
 window.onload = loadVideos;
+
