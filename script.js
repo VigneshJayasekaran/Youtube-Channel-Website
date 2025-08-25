@@ -18,6 +18,19 @@ async function loadVideos() {
     );
     let videoData = await videoResponse.json();
 
+    let published = new Date(item.snippet.publishedAt).toLocaleDateString();
+
+container.innerHTML += `
+  <div class="video-card">
+    <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank">
+      <img src="${thumbnail}" alt="${title}">
+      <p><strong>${title}</strong></p>
+      <small>📅 ${published}</small>
+    </a>
+  </div>
+`;
+
+
     // Render Videos
     const container = document.getElementById("video-container");
     container.innerHTML = "";
@@ -42,6 +55,7 @@ async function loadVideos() {
 
 // Load on page start
 window.onload = loadVideos;
+
 
 
 
