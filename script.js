@@ -1,6 +1,4 @@
-<div id="video-container"></div>
 
-<script>
 const API_KEY = "AIzaSyBVS7La2SW9FILXt_CmUTowfDfIg9B881E";
 const CHANNEL_ID = "UCdidnvDIruEg_-MRJ6TsLsw"; // Replace with your channel ID
 const MAX_RESULTS = 5;
@@ -46,4 +44,5 @@ async function loadVideos() {
 
 // Load on page start
 window.onload = loadVideos;
-</script>
+
+
