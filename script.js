@@ -1,6 +1,6 @@
 // Replace with your channel ID and API Key
-const API_KEY = "YOUR_YOUTUBE_API_KEY";
-const CHANNEL_ID = "UCZyHQlG7Q9DgXjF9B-G9-VA"; // Replace with your channel ID
+const API_KEY = "AIzaSyBVS7La2SW9FILXt_CmUTowfDfIg9B881E";
+const CHANNEL_ID = "v.k.screations9706"; // Replace with your channel ID
 const MAX_RESULTS = 6;
 
 async function loadVideos() {
@@ -42,3 +42,4 @@ async function loadVideos() {
 
 // Load on page start
 window.onload = loadVideos;
+
