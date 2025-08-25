@@ -20,7 +20,7 @@ async function loadVideos() {
     // Step 3: Collect video IDs for statistics
     let videoIds = videoData.items.map(item => item.snippet.resourceId.videoId).join(",");
 
-    // Step 4: Get video statistics (likeCount, viewCount, etc.)
+    // Step 4: Get video statistics (likeCount, viewCount)
     let statsResponse = await fetch(
       `https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${videoIds}&key=${API_KEY}`
     );
@@ -35,15 +35,19 @@ async function loadVideos() {
       let title = item.snippet.title;
       let thumbnail = item.snippet.thumbnails.medium.url;
       let published = new Date(item.snippet.publishedAt).toLocaleDateString();
-      let likes = statsData.items[index].statistics.likeCount;
+
+      // Stats
+      let stats = statsData.items[index].statistics;
+      let likes = stats.likeCount || 0;
+      let views = stats.viewCount || 0;
 
       container.innerHTML += `
-        <div class="video-card">
+        <div class="video-card" style="margin-bottom:20px;">
           <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank">
-            <img src="${thumbnail}" alt="${title}">
+            <img src="${thumbnail}" alt="${title}" style="width:100%;max-width:320px;border-radius:8px;">
             <p><strong>${title}</strong></p>
             <small>📅 ${published}</small><br>
-            <small>👍 ${likes} Likes</small>
+            <small>👍 ${likes} Likes · 👁️ ${views} Views</small>
           </a>
         </div>
       `;
