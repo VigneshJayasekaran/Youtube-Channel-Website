@@ -1,4 +1,6 @@
-// Replace with your channel ID and API Key
+<div id="video-container"></div>
+
+<script>
 const API_KEY = "AIzaSyBVS7La2SW9FILXt_CmUTowfDfIg9B881E";
 const CHANNEL_ID = "UCdidnvDIruEg_-MRJ6TsLsw"; // Replace with your channel ID
 const MAX_RESULTS = 5;
@@ -18,19 +20,6 @@ async function loadVideos() {
     );
     let videoData = await videoResponse.json();
 
-    let published = new Date(item.snippet.publishedAt).toLocaleDateString();
-
-container.innerHTML += `
-  <div class="video-card">
-    <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank">
-      <img src="${thumbnail}" alt="${title}">
-      <p><strong>${title}</strong></p>
-      <small>📅 ${published}</small>
-    </a>
-  </div>
-`;
-
-
     // Render Videos
     const container = document.getElementById("video-container");
     container.innerHTML = "";
@@ -38,12 +27,14 @@ container.innerHTML += `
       let videoId = item.snippet.resourceId.videoId;
       let title = item.snippet.title;
       let thumbnail = item.snippet.thumbnails.medium.url;
+      let published = new Date(item.snippet.publishedAt).toLocaleDateString();
 
       container.innerHTML += `
-        <div class="video-card">
+        <div class="video-card" style="margin:10px; display:inline-block; width:300px;">
           <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank">
-            <img src="${thumbnail}" alt="${title}">
-            <p>${title}</p>
+            <img src="${thumbnail}" alt="${title}" style="width:100%; border-radius:10px;">
+            <p><strong>${title}</strong></p>
+            <small>📅 ${published}</small>
           </a>
         </div>
       `;
@@ -55,7 +46,4 @@ container.innerHTML += `
 
 // Load on page start
 window.onload = loadVideos;
-
-
-
-
+</script>
